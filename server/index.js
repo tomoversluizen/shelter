@@ -10,6 +10,7 @@ module.exports = express()
   .use(express.static('static'))
   // TODO: Serve the images in `db/image` on `/image`.
   .get('/', all)
+  .use('/image', express.static('db/image'))
   /* TODO: Other HTTP methods. */
   // .post('/', add)
   // .get('/:id', get)
@@ -17,6 +18,8 @@ module.exports = express()
   // .patch('/:id', change)
   // .delete('/:id', remove)
   .listen(1902)
+
+  console.log('Port :1902 is available')
 
 function all(req, res) {
   var result = {errors: [], data: db.all()}
